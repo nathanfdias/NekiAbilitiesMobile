@@ -7,7 +7,6 @@ import {
   View,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -15,7 +14,6 @@ export default function SignIn() {
   const navigation = useNavigation();
   const [username, setUsername] = useState("");
   const [senha, setSenha] = useState("");
-  const [errorLogin, setErrorLogin] = useState("");
   const [hidePass, setHidePass] = useState(true);
 
   return (
@@ -68,33 +66,12 @@ export default function SignIn() {
             </TouchableOpacity>
           </View>
         </Animatable.View>
-
-        {errorLogin === true ? (
-          <View style={styles.contentAlert}>
-            <MaterialCommunityIcons
-              name='alert-circle'
-              size={24}
-              color='#bdbdbd'
-            />
-            <Text style={styles.warningAlert}> Email ou Senha Inválidos!</Text>
-          </View>
-        ) : (
-          <View />
-        )}
-        {username === "" || senha === "" ? (
-          <TouchableOpacity
-            disabled={true}
-            style={styles.button}
-            onPress={() => navigation.navigate("/")}>
-            <Text style={styles.buttonText}>Acessar</Text>
-          </TouchableOpacity>
-        ) : (
+        
           <TouchableOpacity
             style={styles.button}
-            onPress={loginFirebase}>
+            onPress={() => navigation.navigate("/Home")}>
             <Text style={styles.buttonText}>Acessar</Text>
           </TouchableOpacity>
-        )}
 
         <TouchableOpacity style={styles.buttonRegister}>
           <Text style={styles.registerText}>
