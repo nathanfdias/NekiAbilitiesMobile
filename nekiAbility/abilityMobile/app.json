@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "abilityMobile",
+    "slug": "abilityMobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
