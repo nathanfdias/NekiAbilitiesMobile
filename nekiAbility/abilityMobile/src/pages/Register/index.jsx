@@ -6,17 +6,23 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+
 import * as Animatable from "react-native-animatable";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function SignIn() {
+export default function Cadastro() {
   const navigation = useNavigation();
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [errorLogin, setErrorLogin] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
   const [hidePass, setHidePass] = useState(true);
+  const [newhidePass, setNewHidePass] = useState(true);
+
+  function test(){
+
+  }
 
   return (
     <View style={styles.container}>
@@ -24,7 +30,7 @@ export default function SignIn() {
         animation='fadeInLeft'
         delay={500}
         style={styles.containerHeader}>
-        <Text style={styles.message}>Bem vindo</Text>
+        <Text style={styles.message}>Cadastro</Text>
       </Animatable.View>
       <Animatable.View
         animation='fadeInUp'
@@ -37,74 +43,82 @@ export default function SignIn() {
           onChangeText={(text) => setUsername(text)}
           value={username}
         />
-
+        <Text style={styles.title}>Email</Text>
+        <TextInput
+          placeholder='Digite um email'
+          placeholderTextColor='#A9A9A9'
+          keyboardType='email-address'
+          style={styles.input}
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+        />
         <Text style={styles.title}>Senha</Text>
-        <Animatable.View>
-          <View style={styles.inputArea}>
-            <TextInput
-              placeholder='Digite sua senha'
-              placeholderTextColor='#A9A9A9'
-              secureTextEntry={hidePass}
-              style={styles.input2}
-              onChangeText={(text) => setSenha(text)}
-              value={senha}
-            />
-            <TouchableOpacity
-              style={styles.icon}
-              onPress={() => setHidePass(!hidePass)}>
-              {hidePass ? (
-                <Ionicons
-                  name='eye'
-                  color='black'
-                  size={25}
-                />
-              ) : (
-                <Ionicons
-                  name='eye-off'
-                  color='black'
-                  size={25}
-                />
-              )}
-            </TouchableOpacity>
-          </View>
-        </Animatable.View>
-
-        {errorLogin === true ? (
-          <View style={styles.contentAlert}>
-            <MaterialCommunityIcons
-              name='alert-circle'
-              size={24}
-              color='#bdbdbd'
-            />
-            <Text style={styles.warningAlert}> Email ou Senha Inválidos!</Text>
-          </View>
-        ) : (
-          <View />
-        )}
-        {username === "" || senha === "" ? (
+        <View style={styles.inputArea}>
+          <TextInput
+            placeholder='Sua senha'
+            placeholderTextColor='#A9A9A9'
+            secureTextEntry={hidePass}
+            style={styles.input2}
+            onChangeText={(text) => setSenha(text)}
+            value={senha}
+          />
           <TouchableOpacity
-            disabled={true}
-            style={styles.button}
-            onPress={() => navigation.navigate("/")}>
-            <Text style={styles.buttonText}>Acessar</Text>
+            style={styles.icon}
+            onPress={() => setHidePass(!hidePass)}>
+            {hidePass ? (
+              <Ionicons
+                name='eye'
+                color='black'
+                size={25}
+              />
+            ) : (
+              <Ionicons
+                name='eye-off'
+                color='black'
+                size={25}
+              />
+            )}
           </TouchableOpacity>
-        ) : (
+        </View>
+        <Text style={styles.title}>Confirme sua senha</Text>
+        <View style={styles.inputArea}>
+          <TextInput
+            placeholder='Sua senha'
+            placeholderTextColor='#A9A9A9'
+            secureTextEntry={newhidePass}
+            style={styles.input2}
+            onChangeText={(text) => setConfirmarSenha(text)}
+            value={confirmarSenha}
+          />
+          <TouchableOpacity
+            style={styles.icon}
+            onPress={() => setNewHidePass(!newhidePass)}>
+            {newhidePass ? (
+              <Ionicons
+                name='eye'
+                color='black'
+                size={25}
+              />
+            ) : (
+              <Ionicons
+                name='eye-off'
+                color='black'
+                size={25}
+              />
+            )}
+          </TouchableOpacity>
+        </View>
+
           <TouchableOpacity
             style={styles.button}
-            onPress={loginFirebase}>
-            <Text style={styles.buttonText}>Acessar</Text>
+            onPress={test}>
+            <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
-        )}
 
-        <TouchableOpacity style={styles.buttonRegister}>
-          <Text style={styles.registerText}>
-            Não possui uma conta?{" "}
-            <Text
-              style={styles.linkSubscribe}
-              onPress={() => navigation.navigate("/Register")}>
-              Cadastre-se
-            </Text>
-          </Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("/SignIn")}>
+          <Text style={styles.buttonText}>Voltar</Text>
         </TouchableOpacity>
       </Animatable.View>
     </View>
@@ -177,10 +191,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  buttonRegister: {
-    marginTop: 14,
-    alignSelf: "center",
-  },
   registerText: {
     color: "#a1a1a1",
   },
@@ -193,8 +203,5 @@ const styles = StyleSheet.create({
   warningAlert: {
     paddingLeft: 10,
     color: "#4d5156",
-  },
-  linkSubscribe: {
-    color: "#1877f2",
   },
 });
