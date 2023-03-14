@@ -22,7 +22,7 @@ export default function HomeHeader() {
           size={28}
           color='white'
           onPress={() => {
-            navigation.navigate("/Cart");
+            navigation.navigate("/Skills");
           }}
         />
       </View>
