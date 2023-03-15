@@ -6,7 +6,7 @@ import {
 
 /* This is creating a new instance of axios with the baseURL and headers. */
 const instance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://neki-production.up.railway.app",
   headers: {
     "Content-Type": "application/json",
   },

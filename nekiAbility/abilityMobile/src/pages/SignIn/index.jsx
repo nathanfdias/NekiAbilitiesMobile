@@ -1,20 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
+  Alert
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import { useAuth } from "../../context/authProvider/useAuth";
+import api from '../../service/api';
+import axios from "axios";
 
 export default function SignIn() {
   const navigation = useNavigation();
   const [username, setUsername] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = useState("");
   const [hidePass, setHidePass] = useState(true);
+
+  const auth = useAuth();
+
+  const handleSignIn = () => { 
+
+    api
+    .post("/auth/signin", {
+      username: username,
+      password: password,
+    })
+    .then((request) => {
+      // auth.authenticate(request.data);
+      console.log(request.data)
+      navigation.navigate("/Home");
+    })
+    .catch((err) => {
+      Alert.alert(err.response.data.message);
+});
+};
+
 
   return (
     <View style={styles.container}>
@@ -44,8 +68,8 @@ export default function SignIn() {
               placeholderTextColor='#A9A9A9'
               secureTextEntry={hidePass}
               style={styles.input2}
-              onChangeText={(text) => setSenha(text)}
-              value={senha}
+              onChangeText={(text) => setPassword(text)}
+              value={password}
             />
             <TouchableOpacity
               style={styles.icon}
@@ -66,10 +90,10 @@ export default function SignIn() {
             </TouchableOpacity>
           </View>
         </Animatable.View>
-        
+        {/* Chamada da Função */}
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("/Home")}>
+            onPress={handleSignIn}>
             <Text style={styles.buttonText}>Acessar</Text>
           </TouchableOpacity>
 

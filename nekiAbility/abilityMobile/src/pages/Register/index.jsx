@@ -5,8 +5,9 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Alert
 } from "react-native";
-
+import axios from "axios";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -20,8 +21,25 @@ export default function Cadastro() {
   const [hidePass, setHidePass] = useState(true);
   const [newhidePass, setNewHidePass] = useState(true);
 
-  function test(){
-
+  function register() {
+    if(senha === confirmarSenha){
+      axios
+        .post("https://neki-production.up.railway.app/auth/signup",{
+            username: username,
+            email: email,
+            password: senha,
+        })
+        .then(response => {
+          console.log(response);
+          alert('Usuário cadastrado com sucesso!');
+        })
+        .catch((error) => {
+          console.log(error.response.data.errors);
+          alert(error.response.data.errors[0]);
+        });
+    } else {
+      alert('Senhas inválidas');
+    }
   }
 
   return (
@@ -111,7 +129,7 @@ export default function Cadastro() {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={test}>
+            onPress={register}>
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
 

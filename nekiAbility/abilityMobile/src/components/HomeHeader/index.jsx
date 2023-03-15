@@ -1,10 +1,26 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import api from "../../service/api";
+import { getUserLocalStorage } from "../../context/authProvider/util";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function HomeHeader() {
   const navigation = useNavigation();
+  const user = getUserLocalStorage();
+
+  async function handleSignout() {
+    try {
+      await api.post('/auth/signout');
+      await AsyncStorage.removeItem('user');
+      navigation.navigate('/Welcome');
+    } catch (error) {
+      if (error.message === 'Failed to refresh token') {
+        navigation.navigate('/SignIn');
+      }
+    }
+  }
 
   return (
     <View style={styles.header}>
@@ -39,9 +55,7 @@ export default function HomeHeader() {
           name='log-out'
           size={28}
           color='#FFF'
-          onPress={() => {
-            navigation.navigate("/SignIn");
-          }}
+          onPress={() => {handleSignout()}}
         />
       </View>
     </View>
