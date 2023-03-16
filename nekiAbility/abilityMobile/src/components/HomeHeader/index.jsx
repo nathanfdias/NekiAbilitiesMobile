@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import api from "../../service/api";
+import axios from "axios";
 import { getUserLocalStorage } from "../../context/authProvider/util";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -12,12 +13,13 @@ export default function HomeHeader() {
 
   async function handleSignout() {
     try {
-      await api.post('/auth/signout');
+      await axios.post('https://neki-production.up.railway.app/auth/signout');
       await AsyncStorage.removeItem('user');
       navigation.navigate('/Welcome');
     } catch (error) {
       if (error.message === 'Failed to refresh token') {
-        navigation.navigate('/SignIn');
+        navigation.navigate('/Welcome');
+        // AsyncStorage.removeItem('user');
       }
     }
   }

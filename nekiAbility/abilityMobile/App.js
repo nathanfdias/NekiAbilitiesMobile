@@ -1,11 +1,14 @@
 import { NavigationContainer } from "@react-navigation/native";
+import { AuthProvider } from '../abilityMobile/src/context/authProvider';
 import React from "react";
 import Routes from "./src/routes";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Routes />
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
+    </AuthProvider>
   );
 }

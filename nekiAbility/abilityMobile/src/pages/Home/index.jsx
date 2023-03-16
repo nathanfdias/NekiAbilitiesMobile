@@ -10,10 +10,10 @@ import {
   TextInput,
   FlatList,
   Alert,
-  ScrollView
 } from "react-native";
 import HomeHeader from "../../components/HomeHeader";
 import api from "../../service/api";
+import { getUserLocalStorage } from "../../context/authProvider/util";
 
 export default function Home() {
   const [visible, setVisible] = useState(false);
@@ -21,6 +21,7 @@ export default function Home() {
   const [idUserAbility, setIdUserAbility] = useState(0);
   const [idAbility, setIdAbility] = useState(0);
   const [knowledgeLevel, setKnowledgeLevel] = useState(0);
+  const user = getUserLocalStorage();
 
   useEffect(() => {
     api

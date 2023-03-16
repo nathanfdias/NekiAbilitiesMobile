@@ -12,7 +12,6 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuth } from "../../context/authProvider/useAuth";
 import api from '../../service/api';
-import axios from "axios";
 
 export default function SignIn() {
   const navigation = useNavigation();
@@ -24,19 +23,23 @@ export default function SignIn() {
 
   const handleSignIn = () => { 
 
-    api
-    .post("/auth/signin", {
+    api.post("/auth/signin", {
       username: username,
       password: password,
     })
     .then((request) => {
-      // auth.authenticate(request.data);
-      console.log(request.data)
+      
+      console.log(request.data.accessToken);
+
+      // AsyncStorage.setItem('userId', request?.data.id);
+      // AsyncStorage.setItem('accessToken', request?.data.accessToken);
       navigation.navigate("/Home");
+
     })
     .catch((err) => {
       Alert.alert(err.response.data.message);
-});
+    });
+
 };
 
 
