@@ -5,7 +5,7 @@ Full Stack Project
 * [BackEnd Repository](https://github.com/nathanfdias/NekiAbilitiesAPI/) 
 * [Mobile Repository](https://github.com/nathanfdias/NekiAbilitiesMobile/) 
 
-![Badge em Desenvolvimento](https://img.shields.io/static/v1?label=STATUS&message=PROCESSO&color=YELLOW&style=for-the-badge)
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=RED&style=for-the-badge"/>
  
 --- 
 
