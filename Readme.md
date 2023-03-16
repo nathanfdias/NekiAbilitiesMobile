@@ -22,7 +22,7 @@ Full Stack Project
 
 ## 👾 Web site work
 
-<!-- <img src="/src/assets/showWebSite.gif" heigth="600"> -->
+<img src="nekiAbility/abilityMobile/src/assets/showVideo.gif">
 
 ---
 
@@ -33,6 +33,7 @@ Full Stack Project
 2- AsyncStorage erro de data impossibilitando consumo.</br>
 3- Estilização e CRUDS prontos, esperando resolução consumo.</br>
 
+Swagger: https://neki-production.up.railway.app/swagger-ui/index.html
 
 --- 
 
