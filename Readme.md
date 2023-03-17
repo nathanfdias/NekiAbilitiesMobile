@@ -1,5 +1,7 @@
-# Neki abilities
+# Neki abilities (ler observações)
 Full Stack Project
+
+- Problemas com conflito entre consumo API Java17 e expo48. Deploy back-end feito para consumo HTTPS, problemas com async storage ao receber dados da API.
 
 * [FrontEnd Repository](https://github.com/nathanfdias/NekiAbilitiesWeb/) 
 * [BackEnd Repository](https://github.com/nathanfdias/NekiAbilitiesAPI/) 
